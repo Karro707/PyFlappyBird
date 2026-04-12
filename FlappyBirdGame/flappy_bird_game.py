@@ -94,7 +94,6 @@ class Pipe:
         self.x = x
         self.height = 0
         
-
         self.top = 0
         self.bottom = 0
         self.PIPE_TOP = pygame.transform.flip(PIPE_IMG, False, True)
@@ -187,6 +186,7 @@ def main():
             if event.type == pygame.QUIT: 
                 run = False
 
+        #to change
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE]:
             bird.jump()
@@ -197,6 +197,7 @@ def main():
         for pipe in pipes:
             if pipe.collide(bird):
                 reset_game()
+                #pass
 
             if pipe.x + pipe.PIPE_TOP.get_width() < 0:
                 rem.append(pipe)
@@ -215,6 +216,7 @@ def main():
 
         if bird.y + bird.img.get_height() >= 730:
             reset_game()
+            #pass
 
         base.move()
 
