@@ -1,8 +1,9 @@
 import pygame
 import os
-#import nest
+import nest
 import time
 import random
+import neat
 
 pygame.font.init()
 
@@ -179,7 +180,25 @@ def draw_window(win, bird, pipes, base, score):
     bird.draw(win)
     pygame.display.update()
 
-def main(): #runs the main loop
+# def draw_window(win, birds, pipes, base, score):
+#     win.blit(BACKGROUND_IMG, (0,0))
+
+#     for pipe in pipes:
+#         pipe.draw(win)
+
+#     # Wynik rysujemy raz, a nie dla każdej rury
+#     text = STAT_FONT.render("Score: " + str(score), 1,(255,255,255))
+#     win.blit(text, (WIN_WIDTH - 10 - text.get_width(), 10))
+
+#     base.draw(win)
+
+#     # Rysujemy wszystkie żyjące ptaki z generacji
+#     for bird in birds:
+#         bird.draw(win)
+        
+#     pygame.display.update()
+
+def gameloop(): #runs the main loop
     bird = Bird(230,350)
     base = Base(730)
     pipes = [Pipe(700)]
@@ -228,8 +247,11 @@ def main(): #runs the main loop
         base.move()
 
         draw_window(win, bird, pipes, base, score)
+        # Rysowanie całego stada
+        # draw_window(win, birds, pipes, base, score)
 
     pygame.quit()
     quit()
 
-main()
+# gameloop()
+
