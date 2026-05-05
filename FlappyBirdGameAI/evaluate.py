@@ -50,13 +50,13 @@ def eval_genomes(genomes, config):
 
         add_pipe = False
         rem = []
+        birds_to_remove = []
+        
         for pipe in pipes:
             for x, bird in enumerate(birds):
                 if pipe.collide(bird):
                     ge[x].fitness -= 1 #kara za kolizje
-                    birds.pop(x) #usuniecie ptaka z listy
-                    nets.pop(x)
-                    ge.pop(x)
+                    birds_to_remove.append(x)
 
                 if not pipe.passed and pipe.x < bird.x:
                     pipe.passed = True
@@ -78,13 +78,19 @@ def eval_genomes(genomes, config):
 
         for x, bird in enumerate(birds):
             if bird.y + bird.img.get_height() >= 730 or bird.y < 0:
-                birds.pop(x)
-                nets.pop(x)
-                ge.pop(x)
+                birds_to_remove.append(x)
+
+        # Usuwaj z końca aby nie zniszczyć indeksy
+        for x in sorted(birds_to_remove, reverse=True):
+            birds.pop(x)
+            nets.pop(x)
+            ge.pop(x)
 
         base.move()
 
-        draw_window(win, birds[0] if len(birds) > 0 else bird, pipes, base, score)
+        # Rysuj tylko jeśli są żywe ptaki
+        if len(birds) > 0:
+            draw_window(win, birds[0], pipes, base, score)
 
 def run_neat(config_path):
     #wczytanie konfiguracji z pliku

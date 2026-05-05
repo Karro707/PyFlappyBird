@@ -1,6 +1,5 @@
 import pygame
 import os
-import nest
 import time
 import random
 import neat
@@ -10,14 +9,14 @@ pygame.font.init()
 WIN_WIDTH = 500
 WIN_HEIGHT = 800
 
-BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))), #BIRD_IMG[0]
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird2.png"))), #BIRD_IMG[1]
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png"))) #BIRD_IMG[2]
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird1.png"))), #BIRD_IMG[0]
+    pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird2.png"))), #BIRD_IMG[1]
+    pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird3.png"))) #BIRD_IMG[2]
     ] #scale makes image 2 times bigger
 
-PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "pipe.png"))) 
-BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "base.png"))) 
-BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bg.png"))) 
+PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "pipe.png"))) 
+BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "base.png"))) 
+BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bg.png"))) 
 
 STAT_FONT = pygame.font.SysFont("comicsans", 50)
 
