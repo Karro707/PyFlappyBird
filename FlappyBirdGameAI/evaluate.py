@@ -45,7 +45,7 @@ def eval_genomes(genomes, config):
         for x, bird in enumerate(birds):
             bird.move()
 
-            ge[x].fitness += 0.1 
+            ge[x].fitness += 0.3 
 
             #sensory birda 
             output = nets[x].activate((bird.y,
@@ -77,7 +77,7 @@ def eval_genomes(genomes, config):
         if add_pipe:
             score += 1
             for g in ge:
-                g.fitness += 10 #nagroda za pokonanie przeszkody
+                g.fitness += 30 #nagroda za pokonanie przeszkody
             pipes.append(Pipe(700))
 
         for r in rem:
