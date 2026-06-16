@@ -43,12 +43,12 @@ def run_neat(config_path):
     stats = neat.StatisticsReporter()
     p.add_reporter(stats)
 
-    # Run for 50 generations
+    # Run for 200 generations
     print("=" * 50)
     print("Starting NEAT training for Flappy Bird AI")
     print("=" * 50)
     
-    winner = p.run(eval_genomes, 50)
+    winner = p.run(eval_genomes, 200)
     
     print("\n" + "=" * 50)
     print("Training complete!")

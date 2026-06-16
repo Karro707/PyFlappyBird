@@ -3,6 +3,11 @@ import neat
 import pygame
 from flappy_bird_game import Bird, Pipe, Base, draw_window, WIN_WIDTH, WIN_HEIGHT
 
+# ===== OPTYMALIZACJA: Ustaw False aby trening był 4x szybszy (bez okna) =====
+DRAW_WINDOW = False
+SPEED_MULTIPLIER = 120 if not DRAW_WINDOW else 30
+# ============================================================================
+
 def eval_genomes(genomes, config):
 
     nets = []
@@ -25,7 +30,7 @@ def eval_genomes(genomes, config):
     score = 0
 
     while run and len(birds) > 0:
-        clock.tick(30)
+        clock.tick(SPEED_MULTIPLIER)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -43,7 +48,9 @@ def eval_genomes(genomes, config):
             ge[x].fitness += 0.1 
 
             #sensory birda 
-            output = nets[x].activate((bird.y, abs(bird.y - pipes[pipe_ind].top), abs(bird.y - pipes[pipe_ind].bottom)))
+            output = nets[x].activate((bird.y,
+                                        abs(bird.y - pipes[pipe_ind].top),
+                                        abs(bird.y - pipes[pipe_ind].bottom)))
 
             if output[0] > 0.5:
                 bird.jump()
@@ -70,7 +77,7 @@ def eval_genomes(genomes, config):
         if add_pipe:
             score += 1
             for g in ge:
-                g.fitness += 5 #nagroda za pokonanie przeszkody
+                g.fitness += 10 #nagroda za pokonanie przeszkody
             pipes.append(Pipe(700))
 
         for r in rem:
@@ -88,8 +95,8 @@ def eval_genomes(genomes, config):
 
         base.move()
 
-        # Rysuj tylko jeśli są żywe ptaki
-        if len(birds) > 0:
+        # Rysuj tylko jeśli są żywe ptaki (i jeśli DRAW_WINDOW jest True)
+        if DRAW_WINDOW and len(birds) > 0:
             draw_window(win, birds[0], pipes, base, score)
 
 def run_neat(config_path):
