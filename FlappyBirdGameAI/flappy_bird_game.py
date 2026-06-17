@@ -1,22 +1,22 @@
 import pygame
 import os
-#import nest
 import time
 import random
+import neat
 
 pygame.font.init()
 
 WIN_WIDTH = 500
 WIN_HEIGHT = 800
 
-BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))), #BIRD_IMG[0]
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird2.png"))), #BIRD_IMG[1]
-    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png"))) #BIRD_IMG[2]
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird1.png"))), #BIRD_IMG[0]
+    pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird2.png"))), #BIRD_IMG[1]
+    pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bird3.png"))) #BIRD_IMG[2]
     ] #scale makes image 2 times bigger
 
-PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "pipe.png"))) 
-BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "base.png"))) 
-BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bg.png"))) 
+PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "pipe.png"))) 
+BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "base.png"))) 
+BACKGROUND_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("..", "imgs", "bg.png"))) 
 
 STAT_FONT = pygame.font.SysFont("comicsans", 50)
 
@@ -179,7 +179,25 @@ def draw_window(win, bird, pipes, base, score):
     bird.draw(win)
     pygame.display.update()
 
-def main(): #runs the main loop
+# def draw_window(win, birds, pipes, base, score):
+#     win.blit(BACKGROUND_IMG, (0,0))
+
+#     for pipe in pipes:
+#         pipe.draw(win)
+
+#     # Wynik rysujemy raz, a nie dla każdej rury
+#     text = STAT_FONT.render("Score: " + str(score), 1,(255,255,255))
+#     win.blit(text, (WIN_WIDTH - 10 - text.get_width(), 10))
+
+#     base.draw(win)
+
+#     # Rysujemy wszystkie żyjące ptaki z generacji
+#     for bird in birds:
+#         bird.draw(win)
+        
+#     pygame.display.update()
+
+def gameloop(): #runs the main loop
     bird = Bird(230,350)
     base = Base(730)
     pipes = [Pipe(700)]
@@ -228,8 +246,11 @@ def main(): #runs the main loop
         base.move()
 
         draw_window(win, bird, pipes, base, score)
+        # Rysowanie całego stada
+        # draw_window(win, birds, pipes, base, score)
 
     pygame.quit()
     quit()
 
-main()
+# gameloop()
+
