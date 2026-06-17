@@ -38,3 +38,9 @@ python test_ai.py
 
 For detailed AI documentation, see [FlappyBirdGameAI/README.md](FlappyBirdGameAI/README.md)
 
+
+## Lib instalation:
+  - pip install pygame
+  - pip install python-neat
+  - pip install python-nest
+  - pip install python-time
